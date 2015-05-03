@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>Portafolio</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, maximum-scale=1">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700,300' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="../static/css/normalize.css">
+        <link rel="stylesheet" href="../static/css/estilos.css">
+        <link rel="shortcut icon" href="../static/images/cmd.ico">
+    </head>
+    <body>
+        <header id="yo" class="Header">
+            <button class="Header-button is-active icon-showMenu" id="showMenu"></button>
+            <button class="Header-button icon-hideMenu" id="hideMenu"></button>
+            <nav class="MainMenu" id="menu">
+                <ul class="MainMenu-list">
+                    <li class="MainMenu-item">
+                        <a class="MainMenu-link" href="#yo">Yo</a>
+                    </li>
+                    <li class="MainMenu-item">
+                        <a class="MainMenu-link" href="#perfil">Perfil</a>
+                    </li>
+                    <li class="MainMenu-item">
+                        <a class="MainMenu-link" href="#cursos">Cursos realizados</a>
+                    </li>
+                    <li class="MainMenu-item">
+                        <a class="MainMenu-link" href="#contacto">Contacto</a>
+                    </li>
+                </ul>
+            </nav>
+            <figure class="Header-imageContainer">
+                <img width="230" height="auto" src="../static/images/avatar.jpg" alt="Imagen personal" class="Header-image"/>
+                <figcaption class="Header-imageDescription">
+                    <a class="Header-link" href="https://twitter.com/juanesteban17" target="_black">@juanesteban17</a>
+                </figcaption>
+            </figure>
+            <p class="Header-name" >Juan Esteban Castaño Rincón</p>
+        </header>
+        <section id="perfil" class="Profile">
+            <div class="u-containerDefault">
+                <h2 class="Profile-title u-title">Mi perfil</h2>
+                <p class="Profile-description">
+                    <strong>Hola!</strong> Bienvenido(a) a mi portafolio
+                </p>
+                <a class="Profile-link twitter icon-twitter" href="https://twitter.com/juanesteban17" target="_blank">@juanesteban17</a>
+                <a class="Profile-link facebook icon-facebook" href="https://www.facebook.com/juanestebancr" target="_blank">juanestebancr</a>
+                <a class="Profile-link github icon-github" href="https://github.com/JCASTANO" target="_blank">JCASTANO</a>
+            </div>
+        </section>
+        <section id="cursos" class="Work">
+            <div class="u-containerDefault">
+                <h2 class="Work-title u-title">Cursos realizados</h2>
+            </div>
+        <section class="Slider">
+            <div class="Slider-container">
+                <ul class="rslides">
+                  <li><img width="100" height="100" class="Work-image" src="../static/images/diploma-programacion-basica.jpg" alt="Programación Básica"></li>
+                  <li><img width="100" height="100" class="Work-image" src="../static/images/diploma-desarrollo-web.jpg" alt="Desarrollo Web"></li>
+                  <li><img width="180" height="180" class="Work-image" src="../static/images/diploma-git-github.jpg" alt="Git-GitHub"></li>
+                  <li><img width="180" height="180" class="Work-image" src="../static/images/diploma-frontend-online.jpg" alt="Frontend"></li>
+                </ul>
+            </div>
+        </section>
+        </section>
+        <footer id="contacto" class="Footer">
+            <div class="Footer-left">
+                <h3 class="Footer-title">Contacto</h3>
+                <p class="Footer-description">Si tienes una sugerencia o quieres trabajar conmigo ponte en contacto con este formulario</p>
+            </div>
+            <form class="Footer-form">
+                <input class="Footer-formInput"  type="text" placeholder="Nombre"/>
+                <input class="Footer-formInput" type="email" placeholder="Email"/>
+                <textarea class="Footer-textarea" placeholder="Motivo"></textarea>
+                <button type="submit" class="Footer-button"> Contactarme </button>
+            </form>
+        </footer>
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="../static/js/vendors/responsiveslides.min.js"></script>
+        <script src="../static/js/vendors/hammer.min.js"></script>
+        <script>
+          $(function() {
+            $(".rslides").responsiveSlides();
+
+            $(".rslides").responsiveSlides({
+                speed: 1000
+            });
+
+            if(window.matchMedia("(max-width:768px)").matches){
+                var $buttonShowMenu = document.getElementById('showMenu');
+                var $buttonHideMenu = document.getElementById('hideMenu');
+                var $menu = document.getElementById('menu');
+                
+                var $body = document.querySelector('body');
+
+                var body = new Hammer($body);
+
+                var showMenu = function(){
+                    $buttonShowMenu.classList.remove('is-active');
+                    $buttonHideMenu.classList.add('is-active');
+                    $menu.classList.add('is-active');
+                };
+
+                var hideMenu = function(){
+                    $buttonShowMenu.classList.add('is-active');
+                    $buttonHideMenu.classList.remove('is-active');
+                    $menu.classList.remove('is-active');
+                };
+
+                $buttonShowMenu.addEventListener("click", showMenu);
+
+                $buttonHideMenu.addEventListener("click", hideMenu);
+
+                body.on('panright', showMenu);
+                body.on('panleft', hideMenu);
+            }
+          });
+        </script>
+    </body>
+</html>
